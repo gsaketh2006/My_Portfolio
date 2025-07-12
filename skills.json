@@ -1,7 +1,7 @@
 {
   "Programming Languages": ["C","C++","Python"],
   "Web Technologies": ["HTML5", "CSS", "Java Script", "PHP"],
-  "Database & Cloud": ["MySQL"],
+  "Database & Cloud": ["MySQL","Vercel","Infinity free"],
   "Tools & Analytics": ["Power BI", "GitHub"],
   "Libraries & Frameworks": ["numpy", "pandas", "scikit-learn"]
 }
