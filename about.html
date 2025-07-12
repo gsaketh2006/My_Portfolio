@@ -803,19 +803,117 @@
     transform: scale(0.97);
     box-shadow: var(--shadow-sm);
 }
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1100;
+  position: relative;
+  margin-right: 1rem;
+}
+.hamburger .bar {
+  width: 22px;
+  height: 3px;
+  background: var(--primary-color);
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 70px;
+  right: 20px;
+  background: var(--bg-primary);
+  box-shadow: var(--shadow-lg);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  z-index: 1200;
+  min-width: 180px;
+  gap: 1.2rem;
+  border: 1px solid var(--border-color);
+  animation: fadeInUp 0.4s;
+}
+.mobile-menu.show {
+  display: flex;
+}
+.mobile-menu li {
+  list-style: none;
+}
+.mobile-menu a, .mobile-menu button {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  width: 100%;
+  text-align: left;
+}
+.mobile-menu a:hover, .mobile-menu button:hover {
+  color: var(--primary-color);
+}
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .mobile-menu {
+    right: 10px;
+    left: 10px;
+    min-width: unset;
+  }
+}
 
     </style>
 </head>
 <body>
     <header>
         <nav>
-            <a href="index.html" class="logo">Saketh</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="resume.html">Resume</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li>
+  <a href="index.html" class="logo">Saketh</a>
+  <button class="hamburger" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMobileMenu()">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li>
+      <button class="theme-toggle" onclick="toggleTheme()">
+        <!-- ...SVG icons as before... -->
+      </button>
+    </li>
+  </ul>
+  <ul class="mobile-menu" id="mobile-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="resume.html">Resume</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+   <li>
                     <button class="theme-toggle" onclick="toggleTheme()">
                         <svg class="sun-icon" viewBox="0 0 24 24">
                             <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
@@ -825,8 +923,8 @@
                         </svg>
                     </button>
                 </li>
-            </ul>
-        </nav>
+  </ul>
+</nav>
     </header>
 
     <main>
@@ -959,5 +1057,25 @@ document.addEventListener('DOMContentLoaded', function () {
         moonIcon.style.display = 'none';
     }
 });
+
+function toggleMobileMenu() {
+  const hamburger = document.querySelector('.hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+  hamburger.setAttribute('aria-expanded', !expanded);
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('show');
+}
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.mobile-menu a').forEach(link => {
+    link.addEventListener('click', function () {
+      document.getElementById('mobile-menu').classList.remove('show');
+      document.querySelector('.hamburger').classList.remove('active');
+      document.querySelector('.hamburger').setAttribute('aria-expanded', 'false');
+    });
+  });
+});
+
+
 
 </script>
