@@ -1,0 +1,26 @@
+[
+  {
+    "title": "B.Tech",
+    "subtitle": "Computer Science Engineering",
+    "Marks_or_CGPA":"CGPA: 8.76",
+    "period": "2023 – Present",
+    "institution": "SRM University AP",
+    "description": "Currently pursuing my B.Tech with a focus on Artificial Intelligence, Machine Learning, and Data Analysis. Actively learning core concepts of computer science, exploring real-world applications of AI/ML, and developing skills in programming, data handling, and web technologies."
+  },
+  {
+    "title": "Intermediate",
+    "subtitle": "MPC",
+    "Marks_or_CGPA":"Marks: 938/1000",
+    "period": "2021 – 2023",
+    "institution": "Sri Chaitanya Junior College, Guntur",
+    "description": "Completed my Intermediate education with a focus on Mathematics, Physics, and Chemistry (MPC), building a strong foundation in analytical thinking and problem solving."
+  },
+  {
+    "title": "SSC(10th Grade)",
+    "subtitle": "General Studies",
+    "Marks_or_CGPA":"GPA: 10",
+    "period": "2020 – 2021",
+    "institution": "Sri Chaitanya High School, Guntur",
+    "description": "Completed my SSC with a strong foundation in mathematics and science, developing analytical and problem-solving skills early on."
+  }
+]
